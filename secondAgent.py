@@ -1,11 +1,3 @@
-"""
-A simple career advisor agent that matches skills to jobs and provides career advice.
-This is a beginner-friendly example that shows how to:
-1. Use a language model
-2. Create a simple matching system
-3. Combine AI with basic programming
-"""
-
 from transformers import pipeline
 
 # ===== Step 1: Set up the local language model =====
@@ -16,49 +8,71 @@ model = pipeline(
 )
 
 # ===== Step 2: Define our job database =====
-# In ideal world this will either be a DB or web search
-JOBS = {
-    "software engineer": [
-        "Python",
-        "JavaScript",
-        "SQL"
-    ],
-    "data scientist": [
-        "Python",
-        "SQL",
-        "Statistics"
-    ],
-    "project manager": [
-        "Communication",
-        "Leadership",
-        "Agile"
-    ]
+# In ideal world this will be a DB
+SKILLS = {
+    "Python": ["software engineer", "data scientist"],
+    "SQL": ["database engineer", "data scientist"],
+    "Maths": ["data scientist"],
+    "JavaScript": ["software engineer"],
+    "Statistics": ["data scientist"],
+    "Communication": ["project manager"],
+    "Leadership": ["project manager"],
+    "Agile": ["project manager"]
 }
 
-# ===== Step 2: Create a function =====
-# In ideal world this could be an llm
+# ===== Step 3: Create skill extraction tool that uses llm =====
+def extract_skills(profile: str) -> list:
+    print("🤖 Tool: skill extraction")
+    prompt = f"""Extract technical and soft skills from this profile. Return only a comma-separated list of skills, no other text.
+
+Profile: {profile}
+
+Skills:"""
+    
+    response = model(prompt)[0]['generated_text']
+    skills = [skill.strip() for skill in response.split(',')]
+    return skills
+
+# ===== Step 4: Create a simple python function as tool =====
 def find_job_matches(profile: str) -> str:
     print("🤖 Tool: job matching")
-    profile = profile.lower()
+    # First extract skills using LLM
+    skills = extract_skills(profile)
     
-    for job, skills in JOBS.items():
-        matching_skills = [
-            skill for skill in skills 
-            if skill.lower() in profile
-        ]
-        if matching_skills:
-            return f"Job: {job} (Matching Skills: {', '.join(matching_skills)})"
+    # Find jobs that match the extracted skills
+    matching_jobs = {}
+    for skill in skills:
+        for req_skill, jobs in SKILLS.items():
+            if req_skill.lower() in skill.lower():
+                for job in jobs:
+                    if job not in matching_jobs:
+                        matching_jobs[job] = []
+                    matching_jobs[job].append(req_skill)
     
-    return "No matching jobs found."
+    if not matching_jobs:
+        return "No matching jobs found."
+    
+    # Return all matching jobs
+    result = []
+    for job, matching_skills in matching_jobs.items():
+        result.append(f"Job: {job} (Matching Skills: {', '.join(matching_skills)})")
+    return "\n".join(result)
 
-# ===== Step 3: Create second function =====
+# ===== Step 5: Create career advice agent =====
 def get_career_advice(profile: str) -> str:
     print("🤖 Tool: career advice")
     matches = find_job_matches(profile)
-    prompt = f"""Given this profile and job matches, provide brief career advice:
-    Profile: {profile}
-    Matches: {matches}
-    What career advice would you give this person?"""
+    prompt = f"""Based on the profile and job matches, recommend the most suitable job. Consider:
+1. Number of matching skills
+2. Relevance of skills to the job
+3. Career growth potential
+
+Profile: {profile}
+
+Available Matches:
+{matches}
+
+Which job is the best match for this profile? """
     
     advice = model(prompt)[0]['generated_text']
     return f"{matches}\nCareer Advice:: {advice}"
@@ -68,9 +82,10 @@ def main():
     print("Starting Career Advisor")
     print("="*50)
     
-    profile = "I know Python and SQL, and I'm good at maths."
+    profile = "I know Python and love maths"
     print(f"Profile: {profile}")
-    
+    print("="*50)
+
     try:
         result = get_career_advice(profile)
         print("\nResults:")

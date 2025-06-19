@@ -1,36 +1,48 @@
-from crewai import Agent, Task, Crew
-from langchain_openai import ChatOpenAI
-import os
+from langchain_ollama import OllamaLLM
+from langchain.agents import create_react_agent, AgentExecutor
+from langchain.prompts import PromptTemplate
+from langchain.tools import tool
 
-# Get OpenAI API key from environment variable
-api_key = os.getenv("OPENAI_API_KEY")
+# 1. Define a simple tool (required for agent)
+@tool
+def dummy_tool(info: str) -> str:
+    """Returns a canned response for demonstration."""
+    return "This is a dummy tool response."
 
-# Initialize LLM
-llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+tools = [dummy_tool]
 
-# Define a LinkedIn job search agent
-job_search_agent = Agent(
-    role="Job Advisor",
-    goal="Suggest relevant job titles based on a user's LinkedIn summary.",
-    backstory="You help people find matching job roles using their profile.",
-    llm=llm
+# 2. Create the LLM
+llm = OllamaLLM(model="llama3.1:8b")
+
+# 3. Create a simple agent prompt
+prompt = PromptTemplate(
+    input_variables=["input", "tools", "tool_names", "agent_scratchpad"],
+    template=(
+        "You are a career advisor. Read a LinkedIn profile summary and suggest 3–5 relevant job titles. "
+        "Respond only with job titles, each on a new line. When you are done, write 'Final Answer:' and then the list of job titles, one per line. "
+        "If you need more information, use the available tools.\n\n"
+        "{input}\n"
+        "Available tools: {tool_names}\n"
+        "{agent_scratchpad}\n"
+        "{tools}"
+    )
 )
 
-# Define task with a direct prompt
-job_search_task = Task(
-    description="Analyze the following LinkedIn summary and suggest 3-5 job titles:\n\n'{profile_summary}'",
-    agent=job_search_agent,
-    expected_output="A list of 3-5 relevant job titles based on the provided LinkedIn summary"
+# 4. Create the agent and executor
+agent = create_react_agent(llm=llm, tools=tools, prompt=prompt)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+# 5. Run the agent
+profile_summary = (
+    "I am a software engineer with 3 years of experience in Python and JavaScript, "
+    "focusing on backend development, cloud services, and microservices architecture."
 )
 
-# Define the crew
-crew = Crew(agents=[job_search_agent], tasks=[job_search_task])
-
-# Sample input
-profile_summary = "I am a software engineer with 3 years of experience in Python and JavaScript."
-
-# Run the agent
-result = crew.kickoff(inputs={"profile_summary": profile_summary})
-
-# Show output
-print(result)
+print("\nSuggested Job Titles:\n")
+try:
+    result = agent_executor.invoke({"input": profile_summary})
+    print("\nResults:")
+    print("="*50)
+    print(result["output"])
+except Exception as e:
+    print(f"An error occurred during agent execution: {e}")
