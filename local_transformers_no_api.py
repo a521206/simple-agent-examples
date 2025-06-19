@@ -1,3 +1,7 @@
+"""
+This script demonstrates a career/job matching agent using only local HuggingFace Transformers (Flan-T5),
+with no API calls or cost. It extracts skills from a profile and suggests matching jobs.
+"""
 from transformers import pipeline
 
 # ===== Step 1: Set up the local language model =====

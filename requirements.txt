@@ -1,6 +1,13 @@
+# For local Transformers (Flan-T5)
 transformers>=4.36.0
 torch>=2.1.0
-crewai
+
+# For LangChain + Ollama
 langchain
 langchain_community
-langchain-ollama 
+langchain-ollama
+
+# For OpenAI Agents SDK example
+openai-agents
+
+crewai 

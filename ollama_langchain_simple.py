@@ -1,3 +1,7 @@
+"""
+This script demonstrates a simple agent using a local Ollama LLM via LangChain to suggest job titles
+based on a LinkedIn-style profile summary. No external API calls or costs are involved.
+"""
 from langchain_ollama import OllamaLLM
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain.prompts import PromptTemplate
@@ -33,16 +37,18 @@ agent = create_react_agent(llm=llm, tools=tools, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 # 5. Run the agent
-profile_summary = (
-    "I am a software engineer with 3 years of experience in Python and JavaScript, "
-    "focusing on backend development, cloud services, and microservices architecture."
-)
+profile_summary = "I know Python and love maths"
 
-print("\nSuggested Job Titles:\n")
+print("Starting Job Title Suggester (Ollama + LangChain)")
+print("="*50)
+print(f"Profile: {profile_summary}")
+print("="*50)
+
 try:
     result = agent_executor.invoke({"input": profile_summary})
     print("\nResults:")
     print("="*50)
     print(result["output"])
+    print("="*50)
 except Exception as e:
     print(f"An error occurred during agent execution: {e}")
