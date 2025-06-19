@@ -8,6 +8,4 @@ langchain_community
 langchain-ollama
 
 # For OpenAI Agents SDK example
-openai-agents
-
-crewai 
+openai-agents 
