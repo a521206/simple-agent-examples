@@ -1,70 +1,88 @@
-# Local & OpenAI Agent Construction Examples
+# Agent Examples
 
-This project demonstrates how to build simple agents using different frameworks and models:
-- **Local HuggingFace Transformers (no API, no cost)**
-- **LangChain with local Ollama LLM (no API cost)**
-- **OpenAI Agents SDK (requires OpenAI API key)**
-
-The example task is career/job title suggestion, but the focus is on showcasing agent construction patterns, not the specific use case.
+A collection of AI agent examples using different frameworks and approaches.
 
 ## Project Structure
 
-| File                        | Description                                                                 |
-|-----------------------------|-----------------------------------------------------------------------------|
-| `local_transformers_no_api.py` | Example of building an agent using only local HuggingFace Transformers (Flan-T5). No API calls or cost. |
-| `ollama_langchain_simple.py`   | Example of building an agent using a local Ollama LLM via LangChain. No external API calls or costs. |
-| `openai_agentsdk_simple.py`    | Example of building an agent using the OpenAI Agents SDK and OpenAI API. Requires an API key. |
+```
+├── examples/
+│   ├── mcp/                    # MCP (Model Context Protocol) examples
+│   │   ├── mcp_crewai_client.py
+│   │   ├── mcp_openai_client.py
+│   │   ├── MCP_README.md
+│   │   └── mcp_tools/          # MCP server implementations
+│   │       └── fastmcp_currency_tool.py
+│   └── simple_agents/          # Basic agent construction examples
+│       ├── local_transformers_no_api.py
+│       ├── openai_agentsdk_simple.py
+│       ├── ollama_langchain_simple.py
+│       └── Simple_Agents.md
+├── config/                     # Configuration templates
+│   └── env.example
+├── docs/                       # Documentation (empty)
+├── requirements.txt
+└── README.md
+```
 
-## Prerequisites
-- Python 3.8+
-- [Ollama](https://ollama.com/) installed and running (for Ollama example)
-- (Optional) OpenAI API key for OpenAI Agents SDK example
+## Quick Start
 
-## Setup
-1. **Clone the repository** (if needed)
-2. **Create and activate a virtual environment:**
-   ```sh
+1. **Setup environment**:
+   ```bash
    python -m venv .venv
-   # On Windows PowerShell:
-   .venv\Scripts\Activate.ps1
-   # On macOS/Linux:
-   source .venv/bin/activate
-   ```
-3. **Install dependencies:**
-   ```sh
-   pip install --upgrade pip
+   .venv\Scripts\activate  # Windows
+   source .venv/bin/activate  # Linux/Mac
    pip install -r requirements.txt
    ```
 
-## Usage
+2. **Configure**:
+   ```bash
+   cp config/env.example .env
+   # Edit .env with your API keys
+   ```
 
-### 1. Local Transformers (No API, No Cost)
-```sh
-python local_transformers_no_api.py
+3. **Run examples**:
+   ```bash
+   # Simple agents (no setup required)
+   python examples/simple_agents/local_transformers_no_api.py
+   
+   # MCP examples (requires ngrok)
+   python examples/mcp/mcp_crewai_client.py
+   ```
+
+## Examples
+
+### Simple Agents
+Basic agent construction patterns with different frameworks:
+
+- **Local Transformers** - Offline inference using Flan-T5 (no API cost)
+- **Ollama + LangChain** - Local LLM with LangChain (no API cost)  
+- **OpenAI Agents SDK** - Cloud-based GPT models (requires API key)
+
+📖 [Detailed guide](examples/simple_agents/Simple_Agents.md)
+
+### MCP Examples
+Agents using external tools via Model Context Protocol:
+
+- **CrewAI MCP Client** - Currency conversion with CrewAI
+- **OpenAI MCP Client** - Currency conversion with OpenAI ⚠️
+
+> **⚠️ Warning**: OpenAI MCP integration is currently facing issues and may not work properly. This is a known issue with the OpenAI library's MCP implementation that may be resolved in future versions.
+
+📖 [Setup guide](examples/mcp/MCP_README.md)
+
+## Prerequisites
+
+- Python 3.8+
+- [Ollama](https://ollama.com/) (for local LLM examples)
+- OpenAI API key (for OpenAI examples)
+- [ngrok](https://ngrok.com/) (for MCP examples)
+
+## Environment Variables
+
+Create `.env` file:
 ```
-- Demonstrates agent construction using only local models (Flan-T5).
-
-### 2. LangChain + Ollama (No API Cost)
-```sh
-python ollama_langchain_simple.py
+OPENAI_API_KEY=your-api-key-here
+MCP_SERVER_URL=https://your-ngrok-url.ngrok-free.app/
 ```
-- Demonstrates agent construction using LangChain and a local LLM (Ollama).
-- Requires Ollama running locally with the `llama3.1:8b` model pulled.
 
-### 3. OpenAI Agents SDK (Requires API Key)
-```sh
-# Set your OpenAI API key first:
-$env:OPENAI_API_KEY="sk-..."  # PowerShell
-export OPENAI_API_KEY="sk-..."  # macOS/Linux
-python openai_agentsdk_simple.py
-```
-- Demonstrates agent construction using the OpenAI Agents SDK and OpenAI's GPT models.
 
-## Notes
-- Each script prints the input profile and results in a clear, structured format.
-- You can modify the `profile_summary` variable in each script to test with different profiles or tasks.
-- The example task is job title suggestion, but the agent construction pattern can be adapted to any use case.
-
----
-
-**Explore and compare how agents can be built with different frameworks and models!** 
