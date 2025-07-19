@@ -37,10 +37,8 @@ def analyze_sales_call(transcript: str) -> dict:
 # Example usage
 if __name__ == "__main__":
     # This would typically come from an audio file
-    sample_transcript = """
-    [Sales Rep] Thanks for joining us today. How can we help you?
-    [Customer] We're looking to improve our team's productivity...
-    """
+    with open("examples/prompt_chaining/sample_transcript.txt", "r") as f:
+        sample_transcript = f.read()
 
     result = analyze_sales_call(sample_transcript)
     print(f"Summary: {result['summary']}")

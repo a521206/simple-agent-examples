@@ -1,0 +1,41 @@
+[Sales Rep] Hi Sarah, thanks for taking the time to meet with us today. I'm Alex from TechFlow Solutions. How are you doing?
+
+[Customer] Hi Alex, I'm doing well, thanks. We've been looking at your productivity software and wanted to learn more about how it could help our team.
+
+[Sales Rep] Great! I'd love to understand your current setup. What kind of team are you managing and what challenges are you facing with productivity?
+
+[Customer] We're a marketing team of about 15 people, and honestly, we're struggling with project coordination. We're using multiple tools - Slack for communication, Trello for project management, and Google Docs for content creation. It's getting chaotic, and we're missing deadlines because things fall through the cracks.
+
+[Sales Rep] That's a very common challenge. Can you give me a specific example of how this affects your workflow?
+
+[Customer] Sure. Last month, we had a big product launch campaign. The designer finished the graphics, but the copywriter didn't know they were ready, so the social media posts were delayed. Then the client was upset because we missed the deadline. It's frustrating because everyone is working hard, but we're not coordinated.
+
+[Sales Rep] I see the issue. Our platform actually solves exactly this problem by bringing all your workflows into one place. What's your budget range for a solution like this?
+
+[Customer] We're looking at around $50-75 per user per month. But honestly, if it actually solves our coordination problems, we could go higher. The cost of missed deadlines is much higher than the software.
+
+[Sales Rep] Perfect. Our team plan is $65 per user per month, which fits right in your range. And you're absolutely right about the cost of missed deadlines. What's your timeline for implementing a solution?
+
+[Customer] We'd like to get something in place within the next 30 days. Our Q4 campaigns are coming up, and we really need to be more organized.
+
+[Sales Rep] That's totally doable. We can have you up and running in about 2 weeks. Would you be interested in a demo next week to see how it would work for your specific use case?
+
+[Customer] Yes, that would be great. Can we do Tuesday afternoon? Around 2 PM?
+
+[Sales Rep] Tuesday at 2 PM works perfectly. I'll send you a calendar invite with the demo link. Is there anyone else from your team who should join us?
+
+[Customer] Yes, our team lead, Mike, should probably be there too. He's been pushing for a solution like this.
+
+[Sales Rep] Perfect. I'll include Mike in the invite as well. Before we wrap up, do you have any other questions about our platform or pricing?
+
+[Customer] Just one - what kind of support do you offer during implementation?
+
+[Sales Rep] Great question. We provide dedicated onboarding support for the first 30 days, including training sessions for your team and weekly check-ins. After that, you have access to our support team and knowledge base. We also offer premium support packages if you need more hands-on help.
+
+[Customer] That sounds good. I'm looking forward to the demo on Tuesday.
+
+[Sales Rep] Me too, Sarah. I think this could be a great fit for your team. I'll send over the calendar invite right after we hang up. Thanks for your time today!
+
+[Customer] Thanks Alex, talk to you Tuesday.
+
+[Sales Rep] Have a great rest of your day! 

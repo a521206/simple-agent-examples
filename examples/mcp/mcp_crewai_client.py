@@ -29,8 +29,7 @@ def get_server_config():
 
 server_config = get_server_config()
 
-with MCPServerAdapter(server_config) as mcp_adapter:
-    currency_tools = mcp_adapter
+with MCPServerAdapter(server_config) as currency_tools:
 
     # Create agent that uses the MCP tools
     currency_agent = Agent(
