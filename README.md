@@ -22,6 +22,11 @@ A collection of minimal, practical AI agent examples using different frameworks 
 │   ├── parallelization/        # Parallelization example
 │   │   ├── parallel_langchain.py
 │   │   └── README.md
+│   ├── reflection/             # Reflection and memory examples
+│   │   ├── memory_reflection.py
+│   │   ├── reflection.py
+│   │   ├── reflection_loop.py
+│   │   └── README.md
 │   └── simple_agents/          # Basic agent construction examples
 │       ├── local_transformers_no_api.py
 │       ├── openai_agentsdk_simple.py
@@ -58,6 +63,11 @@ A collection of minimal, practical AI agent examples using different frameworks 
    # Parallelization (LangChain)
    python examples/parallelization/parallel_langchain.py
 
+   # Reflection (LLM memory & critique)
+   python examples/reflection/memory_reflection.py
+   python examples/reflection/reflection.py
+   python examples/reflection/reflection_loop.py
+
    # MCP (Model Context Protocol)
    python examples/mcp/mcp_crewai_client.py
    # or
@@ -79,6 +89,14 @@ A collection of minimal, practical AI agent examples using different frameworks 
 ### Parallelization (LangChain)
 - Run multiple LLM chains (e.g., summary and sentiment) in parallel on the same input for efficiency.
 - 📖 [Parallelization README](examples/parallelization/README.md)
+
+### Reflection (LLM Memory & Critique)
+- Minimal examples of LLM-powered memory and reflection for self-improving answers.
+- Includes:
+  - `memory_reflection.py`: Minimal memory+reflection demo
+  - `reflection.py`: Basic single-turn reflection
+  - `reflection_loop.py`: Multi-turn iterative reflection
+- 📖 [Reflection README](examples/reflection/README.md)
 
 ### MCP Examples
 - Use external tools via Model Context Protocol (MCP) with CrewAI or OpenAI clients.
