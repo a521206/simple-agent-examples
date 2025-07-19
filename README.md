@@ -19,6 +19,9 @@ A collection of minimal, practical AI agent examples using different frameworks 
 │   │   ├── prompt_chaining.py
 │   │   ├── sample_transcript.txt
 │   │   └── README.md
+│   ├── parallelization/        # Parallelization example
+│   │   ├── parallel_langchain.py
+│   │   └── README.md
 │   └── simple_agents/          # Basic agent construction examples
 │       ├── local_transformers_no_api.py
 │       ├── openai_agentsdk_simple.py
@@ -52,6 +55,9 @@ A collection of minimal, practical AI agent examples using different frameworks 
    # Routing (LangGraph)
    python examples/routing/langgraph_routing.py
 
+   # Parallelization (LangChain)
+   python examples/parallelization/parallel_langchain.py
+
    # MCP (Model Context Protocol)
    python examples/mcp/mcp_crewai_client.py
    # or
@@ -69,6 +75,10 @@ A collection of minimal, practical AI agent examples using different frameworks 
 - Intelligent message routing using an LLM to select the right agent (support, order, product) for each query.
 - Simple canned responses for each agent to clearly show routing.
 - 📖 [Routing README](examples/routing/README.md)
+
+### Parallelization (LangChain)
+- Run multiple LLM chains (e.g., summary and sentiment) in parallel on the same input for efficiency.
+- 📖 [Parallelization README](examples/parallelization/README.md)
 
 ### MCP Examples
 - Use external tools via Model Context Protocol (MCP) with CrewAI or OpenAI clients.
