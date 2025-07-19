@@ -25,7 +25,9 @@ A collection of minimal, practical AI agent examples using different frameworks 
 │   ├── reflection/             # Reflection and memory examples
 │   │   ├── memory_reflection.py
 │   │   ├── reflection.py
-│   │   ├── reflection_loop.py
+│   │   └── README.md
+│   ├── planning/               # Planning example
+│   │   ├── planning.py
 │   │   └── README.md
 │   └── simple_agents/          # Basic agent construction examples
 │       ├── local_transformers_no_api.py
@@ -63,10 +65,12 @@ A collection of minimal, practical AI agent examples using different frameworks 
    # Parallelization (LangChain)
    python examples/parallelization/parallel_langchain.py
 
-   # Reflection (LLM memory & critique)
+   # Reflection (LLM memory, critique, and planning)
    python examples/reflection/memory_reflection.py
    python examples/reflection/reflection.py
-   python examples/reflection/reflection_loop.py
+
+   # Planning (LLM-powered planning)
+   python examples/planning/planning.py
 
    # MCP (Model Context Protocol)
    python examples/mcp/mcp_crewai_client.py
@@ -90,13 +94,16 @@ A collection of minimal, practical AI agent examples using different frameworks 
 - Run multiple LLM chains (e.g., summary and sentiment) in parallel on the same input for efficiency.
 - 📖 [Parallelization README](examples/parallelization/README.md)
 
-### Reflection (LLM Memory & Critique)
-- Minimal examples of LLM-powered memory and reflection for self-improving answers.
+### Reflection (LLM Memory, Critique, and Planning)
+- Minimal examples of LLM-powered memory and reflection for self-improving answers and action plans.
 - Includes:
   - `memory_reflection.py`: Minimal memory+reflection demo
   - `reflection.py`: Basic single-turn reflection
-  - `reflection_loop.py`: Multi-turn iterative reflection
 - 📖 [Reflection README](examples/reflection/README.md)
+
+### Planning
+- Minimal LLM-powered planning example: Given a set of actions and a goal, the LLM creates a plan to achieve the goal by sequencing only the necessary actions.
+- 📖 [Planning README](examples/planning/README.md)
 
 ### MCP Examples
 - Use external tools via Model Context Protocol (MCP) with CrewAI or OpenAI clients.

@@ -1,6 +1,6 @@
 # Reflection Examples (Diet/Health)
 
-This directory demonstrates minimal LLM-powered reflection and memory systems:
+This directory demonstrates minimal LLM-powered reflection, memory, and planning systems:
 
 ## Scripts
 - **memory_reflection.py**: Minimal example. Stores past user queries, responses, and feedback. For a new query, finds the most similar past query using the LLM, reflects on how to improve the response, and shows how memory and reflection can help generate better answers.
