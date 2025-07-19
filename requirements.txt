@@ -11,6 +11,10 @@ openai-agents
 
 # LangChain and Ollama
 langchain-ollama
+langchain-openai
+
+# LangGraph
+langgraph
 
 # CrewAI and tools
 crewai
